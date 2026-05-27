@@ -1,0 +1,85 @@
+﻿<Window x:Class="LLab13.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LLab13" xmlns:vm="clr-namespace:LLab13.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Row="0" Header="Добавить озеро" Padding="10" Margin="0,0,0,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Название:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox x:Name="txtName" Grid.Column="1" VerticalAlignment="Center" Padding="3"/>
+
+                <TextBlock Grid.Column="2" Text="Страна:" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                <TextBox x:Name="txtCountry" Grid.Column="3" VerticalAlignment="Center" Padding="3"/>
+
+                <TextBlock Grid.Column="4" Text="Глубина (м):" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                <TextBox x:Name="txtDepth" Grid.Column="5" VerticalAlignment="Center" Padding="3"/>
+
+                <TextBlock Grid.Column="6" Text="Солёность (%):" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                <TextBox x:Name="txtSalinity" Grid.Column="7" VerticalAlignment="Center" Padding="3"/>
+
+                <Button Grid.Column="8" Content="➕ Добавить" Click="Button_Click" 
+                        Margin="10,0,0,0" Padding="10,5" Background="#4CAF50" Foreground="White"/>
+            </Grid>
+        </GroupBox>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="🔍 Фильтр (&lt;50м, &gt;20%)" Click="Button_Click_3" 
+                    Width="170" Margin="0,0,10,0" Padding="8,5" Background="#2196F3" Foreground="White"/>
+            <Button Content="🗑 Очистить всё" Click="Button_Click_4" 
+                    Width="130" Padding="8,5" Background="#F44336" Foreground="White"/>
+        </StackPanel>
+
+        <GroupBox Grid.Row="2" Header="Все озёра">
+            <DataGrid x:Name="dgAllLakes" ItemsSource="{Binding AllLakes}" 
+                      AutoGenerateColumns="False" IsReadOnly="True" 
+                      GridLinesVisibility="Horizontal">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="2*"/>
+                    <DataGridTextColumn Header="Страна" Binding="{Binding Country}" Width="2*"/>
+                    <DataGridTextColumn Header="Глубина (м)" Binding="{Binding Depth}" Width="*"/>
+                    <DataGridTextColumn Header="Солёность (%)" Binding="{Binding Salinity}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        
+        <TextBlock Grid.Row="3" Text="Результат фильтра (глубина &lt; 50м, солёность &gt; 20%):" 
+                   FontWeight="Bold" Margin="0,10,0,5"/>
+        <DataGrid x:Name="dgFiltered" Grid.Row="4" ItemsSource="{Binding FilteredLakes}" 
+                  AutoGenerateColumns="False" IsReadOnly="True" 
+                  GridLinesVisibility="Horizontal">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="2*"/>
+                <DataGridTextColumn Header="Страна" Binding="{Binding Country}" Width="2*"/>
+                <DataGridTextColumn Header="Глубина (м)" Binding="{Binding Depth}" Width="*"/>
+                <DataGridTextColumn Header="Солёность (%)" Binding="{Binding Salinity}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

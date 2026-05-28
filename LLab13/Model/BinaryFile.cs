@@ -36,39 +36,5 @@ namespace LLab13.Model
                 MessageBox.Show("Ошибка сохранения: " + ex.Message);
             }
         }
-        public static List<Lake> Load()
-        {
-            if (!File.Exists(path))
-            {
-                MessageBox.Show("Файл не найден на рабочем столе!");
-                return new List< Lake > ();
-            }
-
-            var lakes = new List< Lake > ();
-
-            try
-            {
-                using var fs = new FileStream(path, FileMode.Open);
-                using var reader = new BinaryReader(fs);
-
-                while (fs.Position < fs.Length)
-                {
-                    var lake = new Lake
-                    {
-                        Name = reader.ReadString(),
-                        Country = reader.ReadString(),
-                        Depth = reader.ReadDouble(),
-                        Salinity = reader.ReadDouble()
-                    };
-                    lakes.Add(lake);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка чтения: " + ex.Message);
-            }
-
-            return lakes;
-        }
     }
 }

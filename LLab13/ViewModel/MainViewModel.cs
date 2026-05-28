@@ -52,5 +52,16 @@ namespace LLab13.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        public void SaveToDesktop()
+        {
+            if (AllLakes.Count == 0)
+            {
+                MessageBox.Show("Нет данных для сохранения!");
+                return;
+            }
+
+            var list = AllLakes.ToList();
+            BinaryFile.Save(list);
+        }
     }
 }

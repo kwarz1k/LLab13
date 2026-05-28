@@ -66,5 +66,9 @@ namespace LLab13
             txtDepth.Clear();
             txtSalinity.Clear();
         }
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            _vm.SaveToDesktop();
+        }
     }
 }

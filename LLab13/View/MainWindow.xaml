@@ -54,6 +54,9 @@
                     Width="170" Margin="0,0,10,0" Padding="8,5" Background="#2196F3" Foreground="White"/>
             <Button Content="🗑 Очистить всё" Click="Button_Click_4" 
                     Width="130" Padding="8,5" Background="#F44336" Foreground="White"/>
+            <Button Content="🖥️ На рабочий стол" Click="Button_Click_5" 
+                    Width="150" Margin="10,0,10,0" Padding="9,5" 
+                    Background="#9C27B0" Foreground="White"/>
         </StackPanel>
 
         <GroupBox Grid.Row="2" Header="Все озёра">
@@ -68,7 +71,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
-        
+
         <TextBlock Grid.Row="3" Text="Результат фильтра (глубина &lt; 50м, солёность &gt; 20%):" 
                    FontWeight="Bold" Margin="0,10,0,5"/>
         <DataGrid x:Name="dgFiltered" Grid.Row="4" ItemsSource="{Binding FilteredLakes}" 
